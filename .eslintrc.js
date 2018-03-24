@@ -22,7 +22,7 @@ module.exports = {
 		quotes: ["warn", "single"],
 		semi: ["warn", "always"],
 		"no-unused-vars": ["off"],
-		"no-console": ["error"],
+		// "no-console": ["error"],
 		"no-undef": ["off"]
 	}
 };

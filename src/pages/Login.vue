@@ -8,12 +8,14 @@
 		<div class="inputs">
 			<mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
 			<mt-field label="密码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
+			<mt-button type="default" size="large" @click.native="login">登录</mt-button>
 		</div>
 	</div>
 </template>
 
 <script>
 	import r from '../assets/logo.png';
+	import { mapMutations } from 'vuex';
 	export default {
 		name: 'login',
 		data() {
@@ -25,6 +27,26 @@
 		},
 		created: function () {
 			this.s = r;
+		},
+		methods: {
+			...mapMutations(['setToken']),
+			login: function() {
+				let data = {
+					username: this.username,
+					password: this.password
+				};
+				this.post(data);
+			},
+			post: function(data) {
+				this.$axios.post('/api/login', data).then(result => {
+					if (result.data.status == 1) {
+						this.setToken(result.data);
+						this.$router.push('/content');
+					}
+				}).catch(error => {
+
+				});
+			}
 		}
 	};
 
