@@ -17,7 +17,7 @@ module.exports = {
 	rules: {
 		// allow debugger during development
 		"no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-		indent: ["warn", "tab"],
+		// indent: ["warn", "tab"],
 		"linebreak-style": ["warn", "unix"],
 		quotes: ["warn", "single"],
 		semi: ["warn", "always"],
