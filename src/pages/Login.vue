@@ -22,11 +22,13 @@
 			return {
 				s: '',
 				username: '',
-				password: ''
+				password: '',
+				redirect: ''
 			};
 		},
 		created: function () {
 			this.s = r;
+			this.redirect = this.$route.redirect;
 		},
 		methods: {
 			...mapMutations(['setToken']),
@@ -41,7 +43,11 @@
 				this.$axios.post('/api/login', data).then(result => {
 					if (result.data.status == 1) {
 						this.setToken(result.data);
-						this.$router.push('/content');
+						if (this.redirect) {
+							this.$router.push(this.redirect);
+						} else {
+							this.$router.push('/desk');
+						}
 					}
 				}).catch(error => {
 

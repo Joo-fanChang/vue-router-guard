@@ -32,13 +32,15 @@ let check = (Authorization, pk) => {
 	let flag = false;
 	users.forEach(item => {
 		if (item.pk_info == pk) {
-			flag = item.Authorization == Authorization && Date.now() - item.startTime < item.expires_in;
+			flag = item.token == Authorization && Date.now() - item.startTime < item.expires_in * 1000;
 		}
 	});
 	return flag;
 };
 
 let test = ctx => {
+	console.log('test');
+	ctx.status = 401;
 	ctx.body = 'test';
 };
 

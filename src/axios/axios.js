@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from '../store/store.js';
+import router from '@/router/index.js';
 // axios request 拦截器
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -19,7 +20,16 @@ axios.interceptors.response.use(function (response) {
 	return response;
 }, function (error) {
 	// Do something with response error
+	if (error.response) {
+		switch (error.response.status) {
+			case 401:
+				// 返回 401 清除token信息并跳转到登录页面
+				router.replace({
+					path: 'login',
+					query: { redirect: router.currentRoute.fullPath }
+				});
+		}
+	}
 	return Promise.reject(error);
 });
 
-console.log(store.state);

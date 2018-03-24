@@ -1,14 +1,14 @@
 <template>
-	<div id="content">
+	<div id="desk">
 		main
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'main',
+		name: 'desk',
 		created: function () {
-			this.$axios.get('/test').then(result => {
+			this.$axios.get('/api/test').then(result => {
 				console.log(result);
 
 			});
