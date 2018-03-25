@@ -61,7 +61,7 @@
 <style lang="less" scoped>
 	#login {
 		.avatar {
-			margin-top: 20%;
+			padding-top: 20%;
 			text-align: center;
 
 			.circel {
