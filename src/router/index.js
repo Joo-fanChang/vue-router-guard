@@ -30,6 +30,11 @@ let router = new Router({
 					component: Admin
 				}
 			]
+		},
+		{
+			path: '/*',
+			name: 'index',
+			redirect: '/desk/public'
 		}
 	]
 });
@@ -39,7 +44,9 @@ router.beforeEach((to, from, next) => {
 		// 判断该路由是否需要登录权限
 		if (store.state.token) {
 			// 通过vuex state获取当前的token是否存在
-			next();
+			if (Date.now() - store.state.startTime < store.state.expires_in * 1000) {
+				next();
+			}
 		} else {
 			next({
 				path: '/login',
