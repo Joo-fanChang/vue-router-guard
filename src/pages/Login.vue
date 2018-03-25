@@ -28,7 +28,7 @@
 		},
 		created: function () {
 			this.s = r;
-			this.redirect = this.$route.redirect;
+			this.redirect = this.$route.query.redirect;
 		},
 		methods: {
 			...mapMutations(['setToken']),
@@ -46,7 +46,7 @@
 						if (this.redirect) {
 							this.$router.push(this.redirect);
 						} else {
-							this.$router.push('/desk');
+							this.$router.push('/desk/public');
 						}
 					}
 				}).catch(error => {

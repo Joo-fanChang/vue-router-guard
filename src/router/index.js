@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '@/pages/Login.vue';
-import Desk from '@/pages/Desk.vue';
+import Desk from '@/pages/Desk/Desk.vue';
+import Public from '@/pages/Desk/Public.vue';
+import Admin from '@/pages/Desk/Admin.vue';
 import store from '@/store/store.js';
 Vue.use(Router);
 
@@ -16,9 +18,18 @@ let router = new Router({
 			path: '/desk',
 			name: 'desk',
 			component: Desk,
-			meta: {
-				requireAuth: true
-			}
+			children: [
+				{
+					path: 'public',
+					name: 'public',
+					component: Public
+				},
+				{
+					path: 'admin',
+					name: 'admin',
+					component: Admin
+				}
+			]
 		}
 	]
 });

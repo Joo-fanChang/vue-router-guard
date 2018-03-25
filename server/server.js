@@ -9,15 +9,17 @@ const {read, write} = require('./io.js');
 app.use(koaBody());
 
 // 过滤器
-let filter = (ctx, next) => {
+let filter = async (ctx, next) => {
 	let Authorization = ctx.request.headers.authorization;
 	let pk = ctx.cookies.get('pk');
-	let flag = check(Authorization, pk);
 
 	console.log('Authorization: ' + Authorization);
 
+	let flag = await check(Authorization, pk);
 	if (!flag) {
-		ctx.status = 401;
+		ctx.response.status = 401;
+		ctx.body = { status: 0, msg: '没有权限' };
+		return;
 	}
 	next();
 };
@@ -85,9 +87,22 @@ let test = ctx => {
 	ctx.body = 'test';
 };
 
+let publicHandler = ctx => {
+	ctx.body = 'public';
+};
 
+let adminHandler = ctx => {
+	ctx.body = 'admin';
+};
+
+app.use(route.get('/public', publicHandler));
 app.use(route.post('/login', login));
+
+// app.use(route.get('/*', filter));
+// app.use(route.post('/*', filter));
 app.use(filter);
+
+app.use(route.get('/admin', adminHandler));
 app.use(route.get('/test', test));
 app.use(route.post('/test', test));
 
