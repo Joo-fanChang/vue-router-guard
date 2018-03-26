@@ -16,7 +16,11 @@
 		},
 		created: function () {
 			this.$axios.get('/api/public').then(result => {
+				console.log(result);
+
 				this.msg = 'remote public success';
+			}).catch(error => {
+				console.log(error);
 			});
 		}
 	};

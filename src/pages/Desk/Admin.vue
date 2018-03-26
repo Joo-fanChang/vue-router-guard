@@ -16,7 +16,10 @@
 		},
 		created: function() {
 			this.$axios.get('/api/admin').then(result => {
+				console.log(result);
 				this.msg = 'remote admin success';
+			}).catch(error => {
+				console.log(error);
 			});
 		}
 	};

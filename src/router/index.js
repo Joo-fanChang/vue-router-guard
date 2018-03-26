@@ -40,6 +40,9 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+	if (to.path == '/login' && Date.now() - store.state.startTime < store.state.expires_in * 1000) {
+		next({ path: '/' });
+	}
 	if (to.meta.requireAuth) {
 		// 判断该路由是否需要登录权限
 		if (store.state.token) {

@@ -8,8 +8,9 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:9016
 npm run dev
+npm run server
 
 # build for production with minification
 npm run build
@@ -26,6 +27,7 @@ npm run build --report
 其中登录成功后，将token存在vuex中
 在router跳转前，判断是否有token并且在有效期内，这是前端的控制
 
+为了测试跳转，登录的有效限是10s
 
 但是权限问题，前端控制是很不靠谱的
 

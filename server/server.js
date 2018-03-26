@@ -40,7 +40,7 @@ let check = async (Authorization, pk) => {
 let genarateToken = () => {
 	return {
 		token: util.uuid(),
-		expires_in: 7200 ,
+		expires_in: 10 ,
 		startTime: Date.now()
 	};
 };
@@ -88,11 +88,11 @@ let test = ctx => {
 };
 
 let publicHandler = ctx => {
-	ctx.body = 'public';
+	ctx.body = {status: 1, msg: 'public'};
 };
 
 let adminHandler = ctx => {
-	ctx.body = 'admin';
+	ctx.body = {status: 1, msg: 'admin'};
 };
 
 app.use(route.get('/public', publicHandler));
