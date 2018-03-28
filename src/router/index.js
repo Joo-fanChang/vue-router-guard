@@ -28,7 +28,10 @@ let router = new Router({
 				{
 					path: 'admin',
 					name: 'admin',
-					component: Admin
+					component: Admin,
+					meta: {
+						requireAuth: true
+					}
 				}
 			]
 		},
