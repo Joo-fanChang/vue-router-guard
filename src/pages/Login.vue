@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import r from '../assets/logo.png';
+	import r from '../assets/joo.png';
 	import { mapMutations } from 'vuex';
 	export default {
 		name: 'login',
@@ -41,8 +41,9 @@
 			},
 			post: function(data) {
 				this.$axios.post('/api/login', data).then(result => {
-					if (result.data.status == 1) {
-						this.setToken(result.data);
+					if (result.status == 1) {
+						this.$toast('10s登录有效期');
+						this.setToken(result);
 						if (this.redirect) {
 							this.$router.push(this.redirect);
 						} else {
@@ -72,6 +73,7 @@
 				img {
 					width: 100%;
 					height: 100%;
+					border-radius: 50%;
 				}
 			}
 		}

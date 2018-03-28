@@ -5,6 +5,7 @@ import Desk from '@/pages/Desk/Desk.vue';
 import Public from '@/pages/Desk/Public.vue';
 import Admin from '@/pages/Desk/Admin.vue';
 import store from '@/store/store.js';
+import { Toast } from 'mint-ui';
 Vue.use(Router);
 
 let router = new Router({
@@ -51,6 +52,7 @@ router.beforeEach((to, from, next) => {
 				next();
 			}
 		} else {
+			Toast('登录过期，请重新登录');
 			next({
 				path: '/login',
 				query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由

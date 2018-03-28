@@ -98,8 +98,6 @@ let adminHandler = ctx => {
 app.use(route.get('/public', publicHandler));
 app.use(route.post('/login', login));
 
-// app.use(route.get('/*', filter));
-// app.use(route.post('/*', filter));
 app.use(filter);
 
 app.use(route.get('/admin', adminHandler));

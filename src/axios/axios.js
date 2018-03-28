@@ -1,6 +1,7 @@
 import axios from 'axios';
 import store from '../store/store.js';
 import router from '@/router/index.js';
+import { Toast } from 'mint-ui';
 // axios request 拦截器
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -24,6 +25,7 @@ axios.interceptors.response.use(function (response) {
 		switch (error.response.status) {
 			case 401:
 				// 返回 401 清除token信息并跳转到登录页面
+				Toast('登录过期，请重新登录');
 				router.replace({
 					path: '/login',
 					query: { redirect: router.currentRoute.fullPath }
