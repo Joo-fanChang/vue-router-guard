@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-	"start": "npm run dev",
-	"server":"node --inspect ./server/server.js",
+    "server": "node --inspect ./server/server.js",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
@@ -17,6 +16,7 @@
     "koa": "^2.5.0",
     "koa-body": "^2.5.0",
     "koa-route": "^3.2.0",
+    "koa2-cors": "^2.0.5",
     "mint-ui": "^2.2.13",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

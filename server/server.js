@@ -5,8 +5,10 @@ const fs = require('fs');
 const koaBody = require('koa-body');
 const util = require('changzhn-util');
 const {read, write} = require('./io.js');
+const cors = require('koa2-cors');
 
 app.use(koaBody());
+app.use(cors());
 
 // 过滤器
 let filter = async (ctx, next) => {
